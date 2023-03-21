@@ -30,10 +30,21 @@ patys pagal duotą užduoti.
 
 Vartotojo sąsaja turėtų turėti žemiau išvardintus puslapius:
 
-- register.html - vartotojas įrašo vardą, emailą ir slaptažodį du kartus (jeigu slaptažodžiai nesutampa ar yra kitokia validacijos klaida - vartotojas nėra sukuriamas).
-- login.html - vartotojas įrašo emailą, slaptažodį; prisijungus yra sukreipiamas į groups puslapį.
-- groups.html - vartotojas mato visas grupes prie kurių yra prisijungęs. Paspaudus ant grupės vartotojas yra nukreipiamas į tos grupės bills puslapį. Šio puslapio apačioje taip pat turėtų būti forma, kuri leistų vartotojui įvesti grupės ID į kurią vartotojas nori prisijungti.
-- bills.html - mato pasirinktos grupės sąskaitas, taip pat gali pridėti naujas.
+- ~register.html~ - vartotojas įrašo vardą, emailą ir slaptažodį du
+  kartus (jeigu slaptažodžiai nesutampa ar yra kitokia validacijos
+  klaida - vartotojas nėra sukuriamas).
+
+- ~login.html~ - vartotojas įrašo emailą, slaptažodį; prisijungus yra
+  sukreipiamas į groups puslapį.
+
+- ~groups.html~ - vartotojas mato visas grupes prie kurių yra
+  prisijungęs. Paspaudus ant grupės vartotojas yra nukreipiamas į tos
+  grupės bills puslapį. Šio puslapio apačioje taip pat turėtų būti
+  forma, kuri leistų vartotojui įvesti grupės ID į kurią vartotojas
+  nori prisijungti.
+
+- ~bills.html~ - mato pasirinktos grupės sąskaitas, taip pat gali
+  pridėti naujas.
 
 P.S. išskaitymas į puslapius nebūtinai turi būti toks, kaip nurodyta.
 Svarbiausia, kad būtų išpildyti funkciniai reikalavimai.
@@ -69,3 +80,35 @@ terminale.
    (`main` arba `master`) ir pateikti nuorodą šiame "assignment".
 
 Sėkmės!
+
+** Step by step
+*** EPIC Create Barebones
+**** DONE Running flask app
+CLOSED: [2023-03-21 Tue 22:18]
+**** DONE Running flask app with DB(single model)
+CLOSED: [2023-03-21 Tue 22:18]
+**** Create one model - user model
+**** Create a form to create new user
+**** Create populate.py file to fill the db
+**** Display bills
+**** Display groups and members in those groups
+**** Create basic templates
+Bootstrap, css
+
+- base
+- register
+- login
+- groups
+- bills
+- 404
+
+**** Create basic forms
+**** Multiple routes
+*** EPIC Authentication
+Bcrypt
+*** EPIC Additional
+**** Flask messages upon login, register, adding new
+**** Hide secret key
+*** EPIC Finishing touches
+**** updated requirements.txt file
+**** Make a pull request to master branch, send to Z
