@@ -1,0 +1,71 @@
+* Fourcount
+** Uzduotis
+
+Sukurkite sistemą, kuri leistų registruotiems vartotojams prisijungti
+į grupes ir dalintis sąskaitomis.
+
+Įsivaizduokite, kad keliaujate su draugais ir dažnai sąskaitas apmoka
+vienas žmogus.
+
+Vėliau tas žmogus nori atgauti iš draugų pinigus, o jie jau neatsimena
+už ką turėtų su juo atsiskaityti.
+
+Ši sistema turėtų padėti išspręsti šią problemą, nes ji leis dalintis
+išlaidomis/sąskaitomis su pasirinkta draugų grupe.
+
+Panašios programos pavyzdys yra Tricount, aišku, tik mes ją darysime
+truputį paprasčiau.
+
+Prieš pradedant darbą, taip pat, panagrinėkite prie užduoties
+prisegtus "screenshots", jie padės Jums suprasti, kaip turėtų atrodyti
+vartotojo sąsaja.
+
+Funkcionalumas sukurti grupės nėra numatytas, todėl reikės patiems
+tiesiogiai į duomenų bazės lentelę įsirašyti grupės.
+
+Backend ir duomenų bazė:
+
+Maršrutus (angl. routes) ir duomenų bazės struktūrą turite sugalvoti
+patys pagal duotą užduoti.
+
+Vartotojo sąsaja turėtų turėti žemiau išvardintus puslapius:
+
+- register.html - vartotojas įrašo vardą, emailą ir slaptažodį du kartus (jeigu slaptažodžiai nesutampa ar yra kitokia validacijos klaida - vartotojas nėra sukuriamas).
+- login.html - vartotojas įrašo emailą, slaptažodį; prisijungus yra sukreipiamas į groups puslapį.
+- groups.html - vartotojas mato visas grupes prie kurių yra prisijungęs. Paspaudus ant grupės vartotojas yra nukreipiamas į tos grupės bills puslapį. Šio puslapio apačioje taip pat turėtų būti forma, kuri leistų vartotojui įvesti grupės ID į kurią vartotojas nori prisijungti.
+- bills.html - mato pasirinktos grupės sąskaitas, taip pat gali pridėti naujas.
+
+P.S. išskaitymas į puslapius nebūtinai turi būti toks, kaip nurodyta.
+Svarbiausia, kad būtų išpildyti funkciniai reikalavimai.
+
+** Git part
+
+Užduoties įkėlimo instrukcijos
+
+Instrukcijas, kaip valdyti GitHub repozitorijas rasite -
+https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories
+arba step-by-step žemiau.
+
+1. Sukurti GitHub repozitoriją jeigu repozitorija private pridėkite
+   "CodeAcademy-Zygimantas" naudotoja​ kaip Collaborators
+
+Instrukcijas, kaip susikurti GitHub repozitoriją rasite -
+https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository
+
+2. Pakeitimus daryti atskiroje šakoje (pvz. dev), kad būtų galima
+   sukurti Pull Request.
+
+Kaip galima sukurti Pull Request galite sužinoti čia -
+https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
+
+Naują šaką galima susikurti įvykdžius `git checkout -b dev` komandą
+terminale.
+
+3. Kuriant sistemą pakeitimus nuolatos saugoti su prasmingomis
+   "commit" žinutėmis.
+
+4. Pabaigus projektą patikrinti ar visi pakeitimai yra nusiųsti į
+   GitHub, sukurti Pull Request per GitHub puslapį į pagrindinę šaką
+   (`main` arba `master`) ir pateikti nuorodą šiame "assignment".
+
+Sėkmės!
