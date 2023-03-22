@@ -1,9 +1,10 @@
 from flask import Flask, render_template, redirect, url_for, flash, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, FloatField, DecimalField
 from wtforms.validators import DataRequired, Email
 import os
+from datetime import datetime
 from flask_bcrypt import Bcrypt
 from flask_login import (
     LoginManager,
@@ -59,6 +60,14 @@ user_group = db.Table(
 class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), unique=True, nullable=False)
+    bills = db.relationship("Bill", backref="group", lazy=True)
+
+
+class Bill(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    amount = db.Column(db.Float, nullable=False)
+    group_id = db.Column(db.Integer, db.ForeignKey("group.id"))
 
 
 # ===== ROUTES ========================================================================
@@ -68,7 +77,7 @@ class Group(db.Model):
 def route_register():
     db.create_all()
     if current_user.is_authenticated:
-        return redirect(url_for("route_all_users"))
+        return redirect(url_for("route_groups"))
 
     form = RegisterForm()
 
@@ -135,6 +144,44 @@ def route_add_group():
     return render_template("add_group.html", form=form)
 
 
+@app.route("/groups/<int:group_id>/bills", methods=["GET", "POST"])
+@login_required
+def route_bills(group_id):
+    group = Group.query.get(group_id)
+    if group not in current_user.groups:
+        abort(403)
+
+    bills = group.bills
+    form = AddBillForm()
+    if form.validate_on_submit():
+        new_bill = Bill(name=form.name.data, amount=form.amount.data, group=group)
+        db.session.add(new_bill)
+        db.session.commit()
+        flash("New bill added successfully.")
+        return redirect(url_for("route_bills", group_id=group_id))
+
+    return render_template("bills.html", group=group, bills=bills, form=form)
+
+
+@app.route("/groups/<int:group_id>/add_bill", methods=["POST"])
+@login_required
+def add_bill(group_id):
+    group = Group.query.get(group_id)
+    if group not in current_user.groups:
+        abort(403)
+
+    form = AddBillForm()
+    if form.validate_on_submit():
+        bill = Bill(name=form.name.data, amount=form.amount.data, group_id=group.id)
+        db.session.add(bill)
+        db.session.commit()
+        flash("New bill created successfully.")
+        return redirect(url_for("route_bills", group_id=group.id))
+
+    flash_errors(form)
+    return redirect(url_for("route_bills", group_id=group.id))
+
+
 # ===== FORMS ========================================================================
 
 
@@ -160,6 +207,12 @@ class LoginForm(FlaskForm):
 class AddGroupForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired()])
     submit = SubmitField("Create Group")
+
+
+class AddBillForm(FlaskForm):
+    name = StringField("Name", validators=[DataRequired()])
+    amount = DecimalField("Amount", validators=[DataRequired()])
+    submit = SubmitField("Add Bill")
 
 
 if __name__ == "__main__":

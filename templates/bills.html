@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ group.name }} Bills</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bill in bills %}
+                <tr>
+                    <td>{{ bill.name }}</td>
+                    <td>{{ bill.amount }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Add a New Bill</h2>
+    <form method="POST" action="{{ url_for('add_bill', group_id=group.id) }}">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.name.label }}
+            {{ form.name() }}
+        </div>
+        <div>
+            {{ form.amount.label }}
+            {{ form.amount() }}
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+{% endblock %}
