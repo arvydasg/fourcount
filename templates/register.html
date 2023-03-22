@@ -1,21 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-    <form method="POST" action="{{ url_for('route_register') }}">
-        {{ form.csrf_token }}
-        <div>
-            {{ form.name.label }} {{ form.name }}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <img src="{{ url_for('static', filename='fourcount_logo_edited.png') }}" class="img-fluid mb-4" alt="Logo">
+                <form method="POST" action="{{ url_for('route_register') }}" class="needs-validation" novalidate>
+                    {{ form.csrf_token }}
+                    <h4>Register</h4>
+                    <br/>
+                    <div class="mb-3">
+                        <strong>{{ form.name.label(class='form-label') }}</strong>
+                        {{ form.name(class='form-control', required=True) }}
+                        <div class="invalid-feedback">
+                            Please provide a valid name.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <strong>{{ form.email.label(class='form-label') }}</strong>
+                        {{ form.email(class='form-control', required=True) }}
+                        <div class="invalid-feedback">
+                            Please provide a valid email address.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <strong>{{ form.password.label(class='form-label') }}</strong>
+                        {{ form.password(class='form-control', required=True) }}
+                        <div class="invalid-feedback">
+                            Please provide a valid password.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <strong>{{ form.confirm_password.label(class='form-label') }}</strong>
+                        {{ form.confirm_password(class='form-control', required=True) }}
+                        <div class="invalid-feedback">
+                            Please provide a valid password.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+                <br/>
+                <a href="{{url_for("route_login")}}">Or perhaps just login?</a>
+            </div>
         </div>
-        <div>
-            {{ form.email.label }} {{ form.email }}
-        </div>
-        <div>
-            {{ form.password.label }} {{ form.password }}
-        </div>
-        <div>
-            {{ form.submit }}
-        </div>
-    </form>
-
+    </div>
 {% endblock %}

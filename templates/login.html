@@ -2,8 +2,6 @@
 
 {% block content %}
 
-    <h1>Login</h1>
-
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
@@ -17,19 +15,34 @@
         {% endif %}
     {% endwith %}
 
-    <form method="POST">
-        {{ form.csrf_token }}
-        <div>
-            {{ form.name.label }} {{ form.name }}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <img src="{{ url_for('static', filename='fourcount_logo_edited.png') }}" class="img-fluid mb-4" alt="Logo">
+                <form method="POST" action="{{ url_for('route_login') }}" class="needs-validation" novalidate>
+                    {{ form.csrf_token }}
+                    <h4>Login</h4>
+                    <br/>
+                    <div class="mb-3">
+                        <strong>{{ form.name.label(class='form-label')}} </strong>
+                        {{ form.name(class='form-control', required=True) }}
+                        <div class="invalid-feedback">
+                            Please provide a valid name.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <strong>{{ form.password.label(class='form-label') }}</strong>
+                        {{ form.password(class='form-control', required=True) }}
+                        <div class="invalid-feedback">
+                            Please provide a valid password.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <br/>
+                <a href="{{url_for("route_register")}}">Don't have an account? Register.</a>
+            </div>
         </div>
-        <div>
-            {{ form.password.label }} {{ form.password }}
-        </div>
-        <div>
-            {{ form.submit }}
-        </div>
-    </form>
-    <br/>
-    <a href="{{url_for("route_register")}}">Register here if haven't already</a>
+    </div>
 
 {% endblock %}
