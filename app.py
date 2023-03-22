@@ -43,19 +43,25 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(50), unique=True, nullable=False)
     name = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
+    groups = db.relationship(
+        "Group", secondary="user_group", backref=db.backref("members", lazy="dynamic")
+    )
+
+
+# Association table between User and Group
+user_group = db.Table(
+    "user_group",
+    db.Column("user_id", db.Integer, db.ForeignKey("user.id")),
+    db.Column("group_id", db.Integer, db.ForeignKey("group.id")),
+)
+
+
+class Group(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), unique=True, nullable=False)
 
 
 # ===== ROUTES ========================================================================
-
-
-@app.route("/all_users", methods=["GET", "POST"])
-def route_all_users():
-    all_users = User.query.all()
-
-    if not all_users:
-        return render_template("no_data.html")
-
-    return render_template("all_users.html", all_users=all_users)
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -101,8 +107,32 @@ def route_logout():
 
 
 @app.route("/groups", methods=["GET", "POST"])
+@login_required
 def route_groups():
-    return render_template("groups.html")
+    groups = current_user.groups
+    form = AddGroupForm()
+    if form.validate_on_submit():
+        new_group = Group(name=form.name.data)
+        db.session.add(new_group)
+        current_user.groups.append(new_group)
+        db.session.commit()
+        flash("New group created successfully.")
+        return redirect(url_for("route_groups"))
+    return render_template("groups.html", groups=groups, form=form)
+
+
+@app.route("/groups/add", methods=["GET", "POST"])
+@login_required
+def route_add_group():
+    form = AddGroupForm()
+    if form.validate_on_submit():
+        new_group = Group(name=form.name.data)
+        db.session.add(new_group)
+        current_user.groups.append(new_group)
+        db.session.commit()
+        flash("New group created successfully.")
+        return redirect(url_for("route_groups"))
+    return render_template("add_group.html", form=form)
 
 
 # ===== FORMS ========================================================================
@@ -127,7 +157,12 @@ class LoginForm(FlaskForm):
     submit = SubmitField("Submit")
 
 
+class AddGroupForm(FlaskForm):
+    name = StringField("Name", validators=[DataRequired()])
+    submit = SubmitField("Create Group")
+
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
-        app.run(host="0.0.0.0", debug=False)
+        app.run(host="0.0.0.0", debug=True)
