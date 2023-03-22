@@ -18,13 +18,15 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
+
                 <img src="{{ url_for('static', filename='fourcount_logo_edited.png') }}" class="img-fluid mb-4" alt="Logo">
+
                 <form method="POST" action="{{ url_for('route_login') }}" class="needs-validation" novalidate>
                     {{ form.csrf_token }}
                     <h4>Login</h4>
                     <br/>
                     <div class="mb-3">
-                        <strong>{{ form.name.label(class='form-label')}} </strong>
+                        <strong>{{ form.name.label(class='form-label')}}</strong>
                         {{ form.name(class='form-control', required=True) }}
                         <div class="invalid-feedback">
                             Please provide a valid name.

@@ -213,7 +213,7 @@ class LoginForm(FlaskForm):
 
 class AddGroupForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired()])
-    submit = SubmitField("Create Group")
+    submit = SubmitField("Add Group")
 
 
 class AddBillForm(FlaskForm):
