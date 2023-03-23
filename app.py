@@ -77,6 +77,10 @@ class Bill(db.Model):
 def route_register():
     db.create_all()
     if current_user.is_authenticated:
+        flash(
+            "You are already registered and logged in, redirecting you to your groups page!"
+        )
+        flash("To register a new user - please log out first 🙏")
         return redirect(url_for("route_groups"))
 
     form = RegisterForm()
@@ -90,6 +94,7 @@ def route_register():
         )
         db.session.add(new_user)
         db.session.commit()
+        flash("Registration successful, you can login now 🙏")
         return redirect(url_for("route_login"))
 
     return render_template("register.html", form=form)
@@ -97,12 +102,18 @@ def route_register():
 
 @app.route("/login", methods=["GET", "POST"])
 def route_login():
+    if current_user.is_authenticated:
+        flash("You are already logged in, redirecting you to your groups page!")
+        flash("To login with different user you must logout first 🙏")
+        return redirect(url_for("route_groups"))
+
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(name=form.name.data).first()
         if user:
             if bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user)
+                flash("Welcome to your groups page! 🙏")
                 return redirect(url_for("route_groups"))
         flash("Invalid username or password")
 
@@ -112,6 +123,7 @@ def route_login():
 @app.route("/logout", methods=["GET", "POST"])
 def route_logout():
     logout_user()
+    flash("You have been successfully logged out 🙏")
     return redirect(url_for("route_login"))
 
 
@@ -175,7 +187,7 @@ def add_bill(group_id):
         bill = Bill(name=form.name.data, amount=form.amount.data, group_id=group.id)
         db.session.add(bill)
         db.session.commit()
-        flash("New bill created successfully.")
+        flash("New bill added successfully.")
         return redirect(url_for("route_bills", group_id=group.id))
 
     flash_errors(form)
@@ -217,7 +229,7 @@ class AddGroupForm(FlaskForm):
 
 
 class AddBillForm(FlaskForm):
-    name = StringField("Name", validators=[DataRequired()])
+    name = StringField("Description", validators=[DataRequired()])
     amount = DecimalField("Amount", validators=[DataRequired()])
     submit = SubmitField("Add Bill")
 
