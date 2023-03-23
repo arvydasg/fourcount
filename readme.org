@@ -1,3 +1,16 @@
+There are 3 users:
+
+- user - onute
+- pass - 123
+
+- user - petras
+- pass - 123
+
+- user - antanas
+- pass - 123
+
+  You can also create new users by clicking "Register" button.
+
 * Fourcount
 ** Uzduotis
 
