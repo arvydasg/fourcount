@@ -222,6 +222,23 @@ class AddBillForm(FlaskForm):
     submit = SubmitField("Add Bill")
 
 
+# --------------------------------------------------------------------
+# CREATING CUSTOM ERROR PAGES
+
+
+# Invalid URL
+# if I don't pass the error code at the end, terminal shows 200
+@app.errorhandler(404)
+def page_not_found(e):
+    return (render_template("errors/404.html"), 404)
+
+
+# Internal server error
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template("errors/500.html"), 500
+
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
