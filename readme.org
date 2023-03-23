@@ -20,8 +20,8 @@ Prieš pradedant darbą, taip pat, panagrinėkite prie užduoties
 prisegtus "screenshots", jie padės Jums suprasti, kaip turėtų atrodyti
 vartotojo sąsaja.
 
-Funkcionalumas sukurti grupės nėra numatytas, todėl reikės patiems
-tiesiogiai į duomenų bazės lentelę įsirašyti grupės.
+Funkcionalumas sukurti grupės nėra numatytas, TODĖL REIKĖS PATIEMS
+IESIOGIAI Į DUOMENŲ BAZĖS LENTELĘ ĮSIRAŠYTI GRUPĖS.
 
 Backend ir duomenų bazė:
 
@@ -80,35 +80,3 @@ terminale.
    (`main` arba `master`) ir pateikti nuorodą šiame "assignment".
 
 Sėkmės!
-
-** Step by step
-*** EPIC Create Barebones
-**** DONE Running flask app
-CLOSED: [2023-03-21 Tue 22:18]
-**** DONE Running flask app with DB(single model)
-CLOSED: [2023-03-21 Tue 22:18]
-**** Create one model - user model
-**** Create a form to create new user
-**** Create populate.py file to fill the db
-**** Display bills
-**** Display groups and members in those groups
-**** Create basic templates
-Bootstrap, css
-
-- base
-- register
-- login
-- groups
-- bills
-- 404
-
-**** Create basic forms
-**** Multiple routes
-*** EPIC Authentication
-Bcrypt
-*** EPIC Additional
-**** Flask messages upon login, register, adding new
-**** Hide secret key
-*** EPIC Finishing touches
-**** updated requirements.txt file
-**** Make a pull request to master branch, send to Z
