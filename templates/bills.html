@@ -20,7 +20,7 @@
             <div class="col-md-6">
                 <img src="{{ url_for('static', filename='fourcount_logo_edited.png') }}" class="img-fluid mb-4" alt="Logo"
             </div>
-            <h1>All of the bills of <span class="name text-capitalize bg-primary pl-4 pr-4 text-white">{{ group.name }}</span></h1>
+            <h1>All of the bills of ID: {{group.id}} - <span class="name text-capitalize bg-primary pl-4 pr-4 text-white">{{ group.name }}</span></h1>
             <br/>
         </div>
     </div>
@@ -63,5 +63,7 @@
             </form>
         </div>
     </div>
+
+    <a href="{{ url_for('route_groups') }}">Back to all the bills</a>
 
 {% endblock %}
