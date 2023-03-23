@@ -130,8 +130,10 @@ def route_logout():
 @app.route("/groups", methods=["GET", "POST"])
 @login_required
 def route_groups():
+    all_groups = Group.query.all()
     groups = current_user.groups
     form = AddGroupForm()
+    form2 = AddUserToGroupForm()
     if form.validate_on_submit():
         new_group = Group(name=form.name.data)
         db.session.add(new_group)
@@ -139,7 +141,9 @@ def route_groups():
         db.session.commit()
         flash("New group created successfully.")
         return redirect(url_for("route_groups"))
-    return render_template("groups.html", groups=groups, form=form)
+    return render_template(
+        "groups.html", groups=groups, form=form, all_groups=all_groups, form2=form2
+    )
 
 
 @app.route("/groups/add", methods=["GET", "POST"])
@@ -153,7 +157,23 @@ def route_add_group():
         db.session.commit()
         flash("New group created successfully.")
         return redirect(url_for("route_groups"))
-    return render_template("add_group.html", form=form)
+    return render_template("groups.html", form=form)
+
+
+@app.route("/groups/add_user_to_group", methods=["POST"])
+@login_required
+def route_add_user_to_group():
+    form2 = AddUserToGroupForm()
+    if form2.validate_on_submit():
+        group_id = form2.group_id.data
+        group = Group.query.filter_by(id=group_id).first()
+        if group:
+            current_user.groups.append(group)
+            db.session.commit()
+            flash("You have added YOURSELF to the group successfully.")
+        else:
+            flash("Invalid group ID.")
+    return redirect(url_for("route_groups"))
 
 
 @app.route("/groups/<int:group_id>/bills", methods=["GET", "POST"])
@@ -226,6 +246,11 @@ class LoginForm(FlaskForm):
 class AddGroupForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired()])
     submit = SubmitField("Add Group")
+
+
+class AddUserToGroupForm(FlaskForm):
+    group_id = StringField("Group ID", validators=[DataRequired()])
+    submit = SubmitField("Add Me to this Group")
 
 
 class AddBillForm(FlaskForm):
