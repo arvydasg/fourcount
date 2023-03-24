@@ -74,6 +74,15 @@ class Bill(db.Model):
 
 
 @app.route("/", methods=["GET", "POST"])
+def route_index():
+    db.create_all()
+    if current_user.is_authenticated:
+        return redirect(url_for("route_groups"))
+    else:
+        return render_template("index.html")
+
+
+@app.route("/register", methods=["GET", "POST"])
 def route_register():
     db.create_all()
     if current_user.is_authenticated:
@@ -113,7 +122,7 @@ def route_login():
         if user:
             if bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user)
-                flash("Welcome to your groups page! 🙏")
+                flash("Login successful. Welcome to your personal groups page! 🙏")
                 return redirect(url_for("route_groups"))
         flash("Invalid username or password")
 
@@ -122,9 +131,13 @@ def route_login():
 
 @app.route("/logout", methods=["GET", "POST"])
 def route_logout():
-    logout_user()
-    flash("You have been successfully logged out 🙏")
-    return redirect(url_for("route_login"))
+    if current_user.is_authenticated:
+        logout_user()
+        flash("You have been successfully logged out 🙏")
+        return redirect(url_for("route_index"))
+    else:
+        flash("To logout you first must login 😊")
+        return render_template("index.html")
 
 
 @app.route("/groups", methods=["GET", "POST"])
