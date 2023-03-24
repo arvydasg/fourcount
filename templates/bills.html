@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <li>{{ message }}</li>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-md-6">
+                <img src="{{ url_for('static', filename='fourcount_logo_edited.png') }}" class="img-fluid mb-4" alt="Logo"
+            </div>
+            <h1>All of the bills of ID: {{group.id}} - <span class="name text-capitalize bg-primary pl-4 pr-4 text-white">{{ group.name }}</span></h1>
+            <br/>
+        </div>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Description</th>
+                <th scope="col">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bill in bills %}
+                <tr>
+                    <td>{{ bill.id }}</td>
+                    <td>{{ bill.name }}</td>
+                    <td>€{{ bill.amount }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="row justify-content-center text-center">
+        <div class="col-md-6">
+            <h2>Add a New Bill</h2>
+            <form method="POST" action="{{ url_for('add_bill', group_id=group.id) }}">
+                {{ form.hidden_tag() }}
+                <div>
+                    {{ form.name.label }}
+                    {{ form.name() }}
+                </div>
+                <div>
+                    {{ form.amount.label }}
+                    {{ form.amount() }}
+                </div>
+                <div>
+                    {{ form.submit() }}
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <a href="{{ url_for('route_groups') }}">Back to all the bills</a>
+
+{% endblock %}

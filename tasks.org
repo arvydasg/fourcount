@@ -1,0 +1,112 @@
+* Step by step [5/5]
+:PROPERTIES:
+:Effort:   15:00
+:ORDERED:  t
+:END:
+#+BEGIN: clocktable :maxlevel 3 :emphasize nil :scope subtree :properties ("Effort") :narrow 60!
+#+CAPTION: Clock summary at [2023-03-24 Fri 08:38]
+| Effort | Headline                                              | Time  |      |      |
+|--------+-------------------------------------------------------+-------+------+------|
+|        | *Total time*                                            | *11:55* |      |      |
+|--------+-------------------------------------------------------+-------+------+------|
+|  15:00 | Step by step [5/5]                                    | 11:55 |      |      |
+|        | \_  Create Barebones [11/11]                          |       | 6:12 |      |
+|   4:00 | \_  Frontend [0/0]                                    |       | 2:15 |      |
+|        | \_  Additional [3/3]                                  |       | 0:16 |      |
+|        | \_    Flask messages upon login, register, adding new |       |      | 0:15 |
+|        | \_    404 pages                                       |       |      | 0:01 |
+|        | \_  Rebuiding                                         |       | 2:14 |      |
+|        | \_  Finishing touches                                 |       | 0:58 |      |
+|        | \_    Finishing finishing touches                     |       |      | 0:58 |
+#+END:
+** DONE Create Barebones [11/11]
+CLOSED: [2023-03-22 Wed 21:06]
+:LOGBOOK:
+CLOCK: [2023-03-22 Wed 04:59]--[2023-03-22 Wed 09:20] =>  4:21
+CLOCK: [2023-03-21 Tue 21:00]--[2023-03-21 Tue 22:51] =>  1:51
+:END:
+*** DONE Running flask app
+CLOSED: [2023-03-21 Tue 22:18]
+*** DONE Running flask app with DB(single model)
+CLOSED: [2023-03-21 Tue 22:18]
+*** DONE Create one model - user model
+CLOSED: [2023-03-22 Wed 21:04]
+*** DONE Create a form to create new user
+CLOSED: [2023-03-22 Wed 21:04]
+*** DONE Create populate.py file to fill the db
+CLOSED: [2023-03-22 Wed 21:04]
+*** DONE Display bills
+CLOSED: [2023-03-22 Wed 21:04]
+*** DONE Display groups and members in those groups
+CLOSED: [2023-03-22 Wed 21:04]
+*** DONE Create basic templates
+CLOSED: [2023-03-22 Wed 21:05]
+Bootstrap, css
+
+- base
+- register
+- login
+- groups
+- bills
+- 404
+
+*** DONE Create basic forms
+CLOSED: [2023-03-22 Wed 21:05]
+*** DONE Multiple routes
+CLOSED: [2023-03-22 Wed 21:05]
+*** DONE Authentication
+CLOSED: [2023-03-22 Wed 21:05]
+Bcrypt
+** DONE Frontend [0/0]
+CLOSED: [2023-03-23 Thu 20:54]
+:PROPERTIES:
+:Effort:   4:00
+:END:
+:LOGBOOK:
+CLOCK: [2023-03-23 Thu 20:00]--[2023-03-23 Thu 20:45] =>  0:45
+CLOCK: [2023-03-22 Wed 21:07]--[2023-03-22 Wed 22:37] =>  1:30
+:END:
+** DONE Additional [3/3]
+CLOSED: [2023-03-23 Thu 21:26]
+*** DONE Flask messages upon login, register, adding new
+CLOSED: [2023-03-23 Thu 21:00]
+:LOGBOOK:
+CLOCK: [2023-03-23 Thu 20:45]--[2023-03-23 Thu 21:00] =>  0:15
+:END:
+
+- 2 times password when registering
+- when logging in
+- when adding a group
+- when adding a bill
+
+*** DONE 404 pages
+CLOSED: [2023-03-23 Thu 21:02]
+:LOGBOOK:
+CLOCK: [2023-03-23 Thu 21:00]--[2023-03-23 Thu 21:01] =>  0:01
+- nice and quick copy from citatos
+:END:
+*** CANCELLED Hide secret key
+CLOSED: [2023-03-23 Thu 21:14]
+** DONE Rebuiding
+CLOSED: [2023-03-23 Thu 23:56]
+:LOGBOOK:
+CLOCK: [2023-03-23 Thu 21:41]--[2023-03-23 Thu 23:55] =>  2:14
+:END:
+
+Funkcionalumas sukurti grupės nėra numatytas, TODĖL REIKĖS PATIEMS
+IESIOGIAI Į DUOMENŲ BAZĖS LENTELĘ ĮSIRAŠYTI GRUPĖS.
+
+Misunderstood this point. Made so that we can add groups. Now to
+"join" groups and add groups manually directly in db.
+** DONE Finishing touches
+CLOSED: [2023-03-24 Fri 08:38]
+*** DONE Finishing finishing touches
+CLOSED: [2023-03-24 Fri 08:38]
+:LOGBOOK:
+CLOCK: [2023-03-24 Fri 07:40]--[2023-03-24 Fri 08:38] =>  0:58
+:END:
+/ page
+*** DONE updated requirements.txt file
+CLOSED: [2023-03-23 Thu 23:57]
+*** DONE Make a pull request to master branch, send to Z
+CLOSED: [2023-03-23 Thu 23:57]

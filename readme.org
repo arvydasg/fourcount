@@ -1,3 +1,16 @@
+There are 3 users:
+
+- user - onute
+- pass - 123
+
+- user - petras
+- pass - 123
+
+- user - antanas
+- pass - 123
+
+  You can also create new users by clicking "Register" button.
+
 * Fourcount
 ** Uzduotis
 
@@ -20,8 +33,8 @@ Prieš pradedant darbą, taip pat, panagrinėkite prie užduoties
 prisegtus "screenshots", jie padės Jums suprasti, kaip turėtų atrodyti
 vartotojo sąsaja.
 
-Funkcionalumas sukurti grupės nėra numatytas, todėl reikės patiems
-tiesiogiai į duomenų bazės lentelę įsirašyti grupės.
+Funkcionalumas sukurti grupės nėra numatytas, TODĖL REIKĖS PATIEMS
+IESIOGIAI Į DUOMENŲ BAZĖS LENTELĘ ĮSIRAŠYTI GRUPĖS.
 
 Backend ir duomenų bazė:
 
@@ -30,10 +43,21 @@ patys pagal duotą užduoti.
 
 Vartotojo sąsaja turėtų turėti žemiau išvardintus puslapius:
 
-- register.html - vartotojas įrašo vardą, emailą ir slaptažodį du kartus (jeigu slaptažodžiai nesutampa ar yra kitokia validacijos klaida - vartotojas nėra sukuriamas).
-- login.html - vartotojas įrašo emailą, slaptažodį; prisijungus yra sukreipiamas į groups puslapį.
-- groups.html - vartotojas mato visas grupes prie kurių yra prisijungęs. Paspaudus ant grupės vartotojas yra nukreipiamas į tos grupės bills puslapį. Šio puslapio apačioje taip pat turėtų būti forma, kuri leistų vartotojui įvesti grupės ID į kurią vartotojas nori prisijungti.
-- bills.html - mato pasirinktos grupės sąskaitas, taip pat gali pridėti naujas.
+- ~register.html~ - vartotojas įrašo vardą, emailą ir slaptažodį du
+  kartus (jeigu slaptažodžiai nesutampa ar yra kitokia validacijos
+  klaida - vartotojas nėra sukuriamas).
+
+- ~login.html~ - vartotojas įrašo emailą, slaptažodį; prisijungus yra
+  sukreipiamas į groups puslapį.
+
+- ~groups.html~ - vartotojas mato visas grupes prie kurių yra
+  prisijungęs. Paspaudus ant grupės vartotojas yra nukreipiamas į tos
+  grupės bills puslapį. Šio puslapio apačioje taip pat turėtų būti
+  forma, kuri leistų vartotojui įvesti grupės ID į kurią vartotojas
+  nori prisijungti.
+
+- ~bills.html~ - mato pasirinktos grupės sąskaitas, taip pat gali
+  pridėti naujas.
 
 P.S. išskaitymas į puslapius nebūtinai turi būti toks, kaip nurodyta.
 Svarbiausia, kad būtų išpildyti funkciniai reikalavimai.

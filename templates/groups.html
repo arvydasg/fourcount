@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <li>{{ message }}</li>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-md-6">
+                <img src="{{ url_for('static', filename='fourcount_logo_edited.png') }}" class="img-fluid mb-4" alt="Logo"
+            </div>
+            <h1>Hello <span class="text-capitalize bg-primary pl-4 pr-4 text-white">{{ current_user.name }}</span> !</h1>
+            <br/>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="justify-content-center text-center">
+            <h4>Groups that You belong to and can preview:</h4>
+            <p>Click on one to open it</p>
+            <br/>
+        </div>
+    </div>
+
+    <div class="card-columns">
+        {% for group in groups %}
+            <div class="card bg-success" onclick="location.href='{{ url_for('route_bills', group_id=group.id) }}';" style="cursor:pointer;">
+                <div class="card-body text-center">
+                    <strong><p>ID: {{group.id}}</p></strong>
+                    <p class="card-text">{{ group.name }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <br/>
+
+    <div class="row justify-content-center text-center">
+        <div class="col-md-6">
+            <h4>If you wish you can add yourself to a group that you want to see the contents of.</h4>
+            <p>A List of ALL the groups below.</p>
+            <form method="post" action="{{ url_for('route_add_user_to_group') }}">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form2.group_id.label }} {{ form2.group_id }}
+                </div>
+                <div class="form-group">
+                    {{ form.submit }}
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <br/>
+
+    <div class="bg-warning">
+
+        <div class="container">
+            <div class=" justify-content-center text-center">
+                <br/>
+                <h4>ALL the groups:</h4>
+                <p>Listed only for reference to decide which group you want to join.</p>
+                <br/>
+            </div>
+        </div>
+
+        <div class="card-columns">
+            {% for group in all_groups %}
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <strong><p>ID: {{group.id}}</p></strong>
+                        <p class="card-text">{{ group.name }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <br/>
+
+        <div class="row justify-content-center text-center">
+            <div class="col-md-6">
+                <h4>Add a New Group</h4>
+                <p>If you don't find a group that you want to be a part off, create one</p>
+                <form method="POST" action="{{ url_for('route_add_group') }}">
+                    {{ form.hidden_tag() }}
+                    <div class="form-group">
+                        {{ form.name.label }} {{ form.name }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.submit }}
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <li>{{ message }}</li>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+
+                <img src="{{ url_for('static', filename='fourcount_logo_edited.png') }}" class="img-fluid mb-4" alt="Logo">
+
+                <h2>Make <span class="text-capitalize bg-primary pl-4 pr-4 text-white">sharing</span> expenses simple for travel, activities and daily life.</h2>
+
+                <br/>
+
+                <a class="" href="{{url_for("route_register")}}">Register to get started.</a>
+                <br/>
+                <a class="" href="{{url_for("route_login")}}">Or login.</a>
+            </div>
+        </div>
+        </div>
+
+{% endblock %}
