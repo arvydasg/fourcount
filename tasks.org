@@ -4,18 +4,20 @@
 :ORDERED:  t
 :END:
 #+BEGIN: clocktable :maxlevel 3 :emphasize nil :scope subtree :properties ("Effort") :narrow 60!
-#+CAPTION: Clock summary at [2023-03-23 Thu 23:57]
+#+CAPTION: Clock summary at [2023-03-24 Fri 08:38]
 | Effort | Headline                                              | Time  |      |      |
 |--------+-------------------------------------------------------+-------+------+------|
-|        | *Total time*                                            | *10:57* |      |      |
+|        | *Total time*                                            | *11:55* |      |      |
 |--------+-------------------------------------------------------+-------+------+------|
-|  15:00 | Step by step [5/5]                                    | 10:57 |      |      |
+|  15:00 | Step by step [5/5]                                    | 11:55 |      |      |
 |        | \_  Create Barebones [11/11]                          |       | 6:12 |      |
 |   4:00 | \_  Frontend [0/0]                                    |       | 2:15 |      |
 |        | \_  Additional [3/3]                                  |       | 0:16 |      |
 |        | \_    Flask messages upon login, register, adding new |       |      | 0:15 |
 |        | \_    404 pages                                       |       |      | 0:01 |
 |        | \_  Rebuiding                                         |       | 2:14 |      |
+|        | \_  Finishing touches                                 |       | 0:58 |      |
+|        | \_    Finishing finishing touches                     |       |      | 0:58 |
 #+END:
 ** DONE Create Barebones [11/11]
 CLOSED: [2023-03-22 Wed 21:06]
@@ -97,7 +99,13 @@ IESIOGIAI Į DUOMENŲ BAZĖS LENTELĘ ĮSIRAŠYTI GRUPĖS.
 Misunderstood this point. Made so that we can add groups. Now to
 "join" groups and add groups manually directly in db.
 ** DONE Finishing touches
-CLOSED: [2023-03-23 Thu 23:57]
+CLOSED: [2023-03-24 Fri 08:38]
+*** DONE Finishing finishing touches
+CLOSED: [2023-03-24 Fri 08:38]
+:LOGBOOK:
+CLOCK: [2023-03-24 Fri 07:40]--[2023-03-24 Fri 08:38] =>  0:58
+:END:
+/ page
 *** DONE updated requirements.txt file
 CLOSED: [2023-03-23 Thu 23:57]
 *** DONE Make a pull request to master branch, send to Z
